@@ -133,51 +133,17 @@ void MainWindow::on_smutneBox_toggled(bool checked)
 void MainWindow::on_wszystkieBox_clicked()
 {
     mainApp->displayNotes();
-
-    ui->smutneBox->setChecked(false);
-    ui->neutralneBox->setChecked(false);
-    ui->radosneBox->setChecked(false);
-
-    ui->smutneBox->setEnabled(true);
-    ui->neutralneBox->setEnabled(true);
-    ui->radosneBox->setEnabled(true);
-
-    ui->wszystkieBox->setChecked(true);
-    ui->wszystkieBox->setEnabled(false);
 }
 
 
 void MainWindow::on_neutralneBox_clicked(bool checked)
 {
-    if(!checked) {
-        if(!ui->smutneBox->isChecked() && !ui->radosneBox->isChecked()) {
-            on_wszystkieBox_clicked();
-        }
-    }
-    else {
-        mainApp->filtrNeutralne();
-        ui->wszystkieBox->setChecked(false);
-        ui->wszystkieBox->setEnabled(true);
 
-        ui->smutneBox->setChecked(false);
-        ui->smutneBox->setEnabled(false);
-
-        ui->radosneBox->setChecked(false);
-        ui->radosneBox->setEnabled(false);
-    }
 }
 
 
 void MainWindow::on_radosneBox_clicked(bool checked)
 {
-    if(!checked) {
-        if(!ui->neutralneBox->isChecked() && !ui->smutneBox->isChecked()) {
-            on_wszystkieBox_clicked();
-        }
-    }
-    else {
-        ui->wszystkieBox->setChecked(false);
-        ui->wszystkieBox->setEnabled(true);
-    }
+
 }
 

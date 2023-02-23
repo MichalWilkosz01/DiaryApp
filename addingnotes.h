@@ -11,7 +11,7 @@ namespace Ui {
 class AddingNotes;
 }
 
-enum class Uczucia {Smutny, Neutralny, Radosny};
+enum class Feelings {Sad, Neutral, Happy};
 
 class AddingNotes : public QDialog
 {
@@ -24,7 +24,7 @@ public:
     QDateTime getDate();
     QString getNote();
     ~AddingNotes();
-    Uczucia getUczucie() {return m_uczucie; }
+    Feelings getUczucie() {return feeling; }
 
 private slots:
     void on_buttonBox_accepted();
@@ -38,7 +38,7 @@ private slots:
     void on_checkBoxRadosny_clicked();
 
 private:
-    Uczucia m_uczucie = Uczucia::Radosny;
+    Feelings feeling = Feelings::Neutral;
     Ui::AddingNotes *ui;
     QString note;
     QDateTime date;

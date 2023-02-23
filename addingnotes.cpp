@@ -53,7 +53,7 @@ void AddingNotes::on_buttonBox_rejected()
 
 void AddingNotes::on_checkBoxSmutny_clicked()
 {
-    m_uczucie = Uczucia::Smutny;
+    feeling = Feelings::Sad;
     ui->checkBoxSmutny->setEnabled(false);
     ui->checkBoxNeutralny->setChecked(false);
     ui->checkBoxNeutralny->setEnabled(true);
@@ -63,7 +63,7 @@ void AddingNotes::on_checkBoxSmutny_clicked()
 
 void AddingNotes::on_checkBoxNeutralny_clicked()
 {
-    m_uczucie = Uczucia::Neutralny;
+    feeling = Feelings::Neutral;
     ui->checkBoxNeutralny->setEnabled(false);
     ui->checkBoxSmutny->setChecked(false);
     ui->checkBoxSmutny->setEnabled(true);
@@ -74,7 +74,7 @@ void AddingNotes::on_checkBoxNeutralny_clicked()
 
 void AddingNotes::on_checkBoxRadosny_clicked()
 {
-    m_uczucie = Uczucia::Radosny;
+    feeling = Feelings::Happy;
     ui->checkBoxRadosny->setEnabled(false);
     ui->checkBoxSmutny->setChecked(false);
     ui->checkBoxSmutny->setEnabled(true);
