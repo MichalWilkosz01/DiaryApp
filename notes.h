@@ -3,7 +3,6 @@
 
 
 #include "qdatetime.h"
-
 #include <QList>
 #include <algorithm>
 #include <QFileInfo>

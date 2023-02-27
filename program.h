@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QFileDialog>
 #include "addingnotes.h"
-#include "notes.h"
 
 class MainWindow;
 
@@ -24,7 +23,7 @@ public:
     void loadBackUp(QString filePath);
     void saveBackUp(QString filePath);
     void filtrNeutralne();
-    void displayFiltred();
+    void displayFiltered();
     void displayNotes();
 signals:
     void sendNotes(QString pNote, QString cNote, QString nNote);
