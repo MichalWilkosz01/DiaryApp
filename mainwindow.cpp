@@ -1,6 +1,4 @@
 #include "mainwindow.h"
-#include "notes.h"
-
 #include "ui_mainwindow.h"
 
 
@@ -18,8 +16,7 @@ MainWindow::MainWindow(QWidget *parent, Program *app)
     connect(mainApp,SIGNAL(setEnableUsun()),this,SLOT(on_setEnableUsun()));
 
     mainApp->checkFile();
-    ui->wszystkieBox->setChecked(true);
-    ui->wszystkieBox->setEnabled(false);
+    ui->everyFeelingBox->setChecked(true);
 }
 
 MainWindow::~MainWindow()
@@ -101,7 +98,6 @@ void MainWindow::on_pushSort_clicked()
 }
 
 
-
 void MainWindow::on_loadBackUpButton_clicked()
 {
     QString path = QFileDialog::getOpenFileName(this,"Otworz plik .txt","","Pliki tekstowe (*.txt)");
@@ -116,34 +112,32 @@ void MainWindow::on_saveBackUpButton_clicked()
 }
 
 
-void MainWindow::on_smutneBox_toggled(bool checked)
-{
-    if(!checked) {
-        if(!ui->neutralneBox->isChecked() && !ui->radosneBox->isChecked()) {
-            on_wszystkieBox_clicked();
-        }
-    }
-    else {
-        ui->wszystkieBox->setChecked(false);
-        ui->wszystkieBox->setEnabled(true);
-    }
-}
-
-
-void MainWindow::on_wszystkieBox_clicked()
+void MainWindow::on_everyFeelingBox_clicked()
 {
     mainApp->displayNotes();
+    ui->neutralFeelingBox->setChecked(false);
+    ui->sadFeelingBox->setChecked(false);
+    ui->happyFeelingBox->setChecked(false);
 }
 
 
-void MainWindow::on_neutralneBox_clicked(bool checked)
+void MainWindow::on_neutralFeelingBox_clicked(bool checked)
 {
-
+    if(checked)
+        ui->everyFeelingBox->setChecked(false);
 }
 
 
-void MainWindow::on_radosneBox_clicked(bool checked)
+void MainWindow::on_happyFeelingBox_clicked(bool checked)
 {
+    if(checked)
+        ui->everyFeelingBox->setChecked(false);
+}
 
+
+void MainWindow::on_sadFeelingBox_clicked(bool checked)
+{
+    if(checked)
+        ui->everyFeelingBox->setChecked(false);
 }
 

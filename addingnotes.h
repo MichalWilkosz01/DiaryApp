@@ -5,8 +5,6 @@
 #include <QDialog>
 
 
-
-
 namespace Ui {
 class AddingNotes;
 }
