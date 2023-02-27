@@ -89,21 +89,21 @@
      </spacer>
     </item>
     <item row="3" column="1">
-     <widget class="QCheckBox" name="everyFeelingBox">
+     <widget class="QCheckBox" name="wszystkieBox">
       <property name="text">
        <string>Wszystkie</string>
       </property>
      </widget>
     </item>
     <item row="3" column="2">
-     <widget class="QCheckBox" name="sadFeelingBox">
+     <widget class="QCheckBox" name="smutneBox">
       <property name="text">
        <string>Smutne</string>
       </property>
      </widget>
     </item>
     <item row="3" column="5">
-     <widget class="QCheckBox" name="happyFeelingBox">
+     <widget class="QCheckBox" name="radosneBox">
       <property name="text">
        <string>Radosne</string>
       </property>
@@ -265,7 +265,7 @@
      </spacer>
     </item>
     <item row="3" column="3" colspan="2">
-     <widget class="QCheckBox" name="neutralFeelingBox">
+     <widget class="QCheckBox" name="neutralneBox">
       <property name="text">
        <string>Neutralne</string>
       </property>
@@ -279,7 +279,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

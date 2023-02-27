@@ -1,5 +1,4 @@
 #include "program.h"
-#include "notes.h"
 
 Program::Program(QObject *parent)
     : QObject{parent}
@@ -54,12 +53,10 @@ void Program::deleteNote()
 
 void Program::displayNotes()
 {
-    if(!Notes::isEmpty()) {
-        QString prevNote = Notes::pNote();
-        QString currNote = Notes::cNote();
-        QString nextNote = Notes::nNote();
-        emit sendNotes(prevNote, currNote, nextNote);
-    }
+    QString prevNote = Notes::pNote();
+    QString currNote = Notes::cNote();
+    QString nextNote = Notes::nNote();
+    emit sendNotes(prevNote, currNote, nextNote);
 }
 
 void Program::choseFile(QString path)
@@ -104,11 +101,11 @@ void Program::saveBackUp(QString filePath)
 void Program::filtrNeutralne()
 {
     Notes::addNeutralne();
-    displayFiltered();
+    displayFiltred();
 
 }
 
-void Program::displayFiltered()
+void Program::displayFiltred()
 {
     QString prevNote = Notes::pNote();
     QString currNote = Notes::filtredcNote();

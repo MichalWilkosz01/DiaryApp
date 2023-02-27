@@ -8,6 +8,10 @@
 #include <QDir>
 #include <QTextStream>
 #include <QFileInfo>
+#include "notes.h"
+
+#include "addingnotes.h"
+
 #include <QMouseEvent>
 #include "program.h"
 
@@ -48,13 +52,13 @@ private slots:
 
     void on_saveBackUpButton_clicked();
 
-    void on_everyFeelingBox_clicked();
+    void on_smutneBox_toggled(bool checked);
 
-    void on_neutralFeelingBox_clicked(bool checked);
+    void on_wszystkieBox_clicked();
 
-    void on_happyFeelingBox_clicked(bool checked);
+    void on_neutralneBox_clicked(bool checked);
 
-    void on_sadFeelingBox_clicked(bool checked);
+    void on_radosneBox_clicked(bool checked);
 
 signals:
     void doubleClickedLeft();
