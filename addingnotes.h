@@ -3,13 +3,13 @@
 
 #include "qdatetime.h"
 #include <QDialog>
-
+#include "myenums.h"
 
 namespace Ui {
 class AddingNotes;
 }
 
-enum class Feelings {Sad, Neutral, Happy};
+
 
 class AddingNotes : public QDialog
 {

@@ -115,13 +115,15 @@ void Notes::readFile(QString path)
         QString numNotes = stream.readLine();
         currentIdx = numNotes.toInt();
         QDateTime date;
-        int ucz;
+        int idxOfFeeling;
+        Feelings feeling;
         QString note;
         while(stream.atEnd() == false) {
             date = QDateTime::fromString(stream.readLine());
-            ucz = stream.readLine().toInt();
+            idxOfFeeling = stream.readLine().toInt();
+            feeling = static_cast<Feelings>(idxOfFeeling);
             note = stream.readLine();
-            addToList(Notes(date, note, ucz));
+            addToList(Notes(date, note, feeling));
         }
         file.close();
     }
@@ -138,7 +140,7 @@ void Notes::createFile(QString path)
             for (int i = 0; i < listNotes.size(); i++) {
                 stream << listNotes.at(i).getm_DateTime().toString();
                 stream << "\n";
-                stream << listNotes.at(i).m_uczucie;
+                stream << (int)listNotes.at(i).m_feeling;
                 stream << "\n";
                 stream << listNotes.at(i).getm_Note();
                 stream << "\n";
@@ -152,7 +154,7 @@ void Notes::addNeutralne()
 {
     filtredNotes.clear();
     for(int i = 0; i < listNotes.size(); i++) {
-        if(listNotes.at(i).m_uczucie == 1) {
+        if(listNotes.at(i).m_feeling == Feelings::Neutral) {
             filtredNotes.push_back(listNotes.at(i));
         }
     }
@@ -168,15 +170,15 @@ void Notes::sortFunction() {
         std::sort(listNotes.begin(), listNotes.end(), std::greater<Notes>());
 }
 
-Notes::Notes(QDateTime dateTime, QString note, int uczucie)
+Notes::Notes(QDateTime dateTime, QString note, Feelings feeling)
     :m_DateTime(dateTime), m_note(note)
 {
-    m_uczucie = uczucie;
+    m_feeling = feeling;
     std::array<QString,3> feelingArr;
     feelingArr[0] = "smutny";
     feelingArr[1] = "neutralny";
     feelingArr[2] = "radosny";
-    m_noteAndDate = "<b>" + dateTime.toString() + "</b>" + "<br>" + "<i>" + feelingArr[m_uczucie] + "</i>" + "<br>" + note;
+    m_noteAndDate = "<b>" + dateTime.toString() + "</b>" + "<br>" + "<i>" + feelingArr[(int)m_feeling] + "</i>" + "<br>" + note;
 };
 
 bool Notes::operator==(const Notes& rhs) const {

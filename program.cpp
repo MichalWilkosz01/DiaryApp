@@ -15,8 +15,7 @@ void Program::createWindow()
         delete winNote;
         return;
     }
-    Notes n1(winNote->getDate(), winNote->getNote(), (int)winNote->getUczucie());
-    Notes::addToList(n1);
+    Notes::addToList(Notes(winNote->getDate(), winNote->getNote(), winNote->getUczucie()));
     delete winNote;
     displayNotes();
     if(!Notes::isEmpty())
@@ -46,7 +45,7 @@ void Program::deleteNote()
        displayNotes();
     if(Notes::isEmpty()) {
        QString prevNote = "";
-       QString currNote = "Usunieto ostatni wpis";
+       QString currNote = "Usunieto ostatni wpis!";
        QString nextNote = "";
        emit sendNotes(prevNote, currNote, nextNote);
     }

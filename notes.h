@@ -3,6 +3,7 @@
 
 
 #include "qdatetime.h"
+#include "myenums.h"
 #include <QList>
 #include <algorithm>
 #include <QFileInfo>
@@ -22,10 +23,10 @@ private:
     static bool isLastDeleted;
     static QList<Notes> filtredNotes;
     static int currendFiltredIdx;
-    int m_uczucie = 1;
+    Feelings m_feeling = Feelings::Neutral;
 
 public:
-    Notes(QDateTime dateTime, QString note, int uczucie);
+    Notes(QDateTime dateTime, QString note, Feelings feeling);
     QDateTime getm_DateTime() const { return m_DateTime; }
     QString getm_Note() const { return m_note; }
     QString getFullNote() const { return m_noteAndDate; }

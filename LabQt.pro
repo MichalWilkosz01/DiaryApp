@@ -18,6 +18,7 @@ SOURCES += \
 HEADERS += \
     addingnotes.h \
     mainwindow.h \
+    myenums.h \
     notes.h \
     program.h
 

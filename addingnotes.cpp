@@ -55,30 +55,36 @@ void AddingNotes::on_checkBoxSmutny_clicked()
 {
     feeling = Feelings::Sad;
     ui->checkBoxSmutny->setEnabled(false);
-    ui->checkBoxNeutralny->setChecked(false);
     ui->checkBoxNeutralny->setEnabled(true);
-    ui->checkBoxRadosny->setChecked(false);
     ui->checkBoxRadosny->setEnabled(true);
+
+
+    ui->checkBoxNeutralny->setChecked(false);
+    ui->checkBoxRadosny->setChecked(false);
 }
 
 void AddingNotes::on_checkBoxNeutralny_clicked()
 {
     feeling = Feelings::Neutral;
-    ui->checkBoxNeutralny->setEnabled(false);
-    ui->checkBoxSmutny->setChecked(false);
     ui->checkBoxSmutny->setEnabled(true);
-    ui->checkBoxRadosny->setChecked(false);
+    ui->checkBoxNeutralny->setEnabled(false);
     ui->checkBoxRadosny->setEnabled(true);
+
+
+    ui->checkBoxSmutny->setChecked(false);
+    ui->checkBoxRadosny->setChecked(false);
 }
 
 
 void AddingNotes::on_checkBoxRadosny_clicked()
 {
     feeling = Feelings::Happy;
-    ui->checkBoxRadosny->setEnabled(false);
-    ui->checkBoxSmutny->setChecked(false);
     ui->checkBoxSmutny->setEnabled(true);
-    ui->checkBoxNeutralny->setChecked(false);
     ui->checkBoxNeutralny->setEnabled(true);
+    ui->checkBoxRadosny->setEnabled(false);
+
+
+    ui->checkBoxNeutralny->setChecked(false);
+    ui->checkBoxSmutny->setChecked(false);
 }
 
