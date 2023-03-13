@@ -32,12 +32,19 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_downButton_clicked()
 {
-    mainApp->incrementIdx();
+    qInfo() << mainApp->checkIsFiltered();
+    if(mainApp->checkIsFiltered())
+        mainApp->incrementFilteredIdx();
+    else
+        mainApp->incrementIdx();
 }
 
 void MainWindow::on_upButton_clicked()
 {
-    mainApp->decrementIdx();
+    if(mainApp->checkIsFiltered())
+        mainApp->decrementFilteredIdx();
+    else
+        mainApp->decrementIdx();
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event)
@@ -123,21 +130,27 @@ void MainWindow::on_everyFeelingBox_clicked()
 
 void MainWindow::on_neutralFeelingBox_clicked(bool checked)
 {
-    if(checked)
+    if(checked) {
         ui->everyFeelingBox->setChecked(false);
+        mainApp->displayFilteredNotes(Feelings::Neutral);
+    }
 }
 
 
 void MainWindow::on_happyFeelingBox_clicked(bool checked)
 {
-    if(checked)
+    if(checked) {
         ui->everyFeelingBox->setChecked(false);
+        mainApp->displayFilteredNotes(Feelings::Happy);
+    }
 }
 
 
 void MainWindow::on_sadFeelingBox_clicked(bool checked)
 {
-    if(checked)
+    if(checked) {
         ui->everyFeelingBox->setChecked(false);
+        mainApp->displayFilteredNotes(Feelings::Sad);
+    }
 }
 

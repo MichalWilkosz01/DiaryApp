@@ -3,7 +3,7 @@
 bool Notes::fromOldest = true;
 bool Notes::isLastDeleted = false;
 int Notes::currentIdx;
-int Notes::currendFiltredIdx;
+int Notes::currentFiltredIdx;
 
 QList<Notes> Notes::listNotes;
 QList<Notes> Notes::filtredNotes;
@@ -49,10 +49,33 @@ QString Notes::nNote() {
 
 QString Notes::filtredcNote()
 {
-    if(currentIdx >= 0)
-        return listNotes.at(currendFiltredIdx).getFullNote();
+    if(currentFiltredIdx >= 0) {
+        return filtredNotes.at(currentFiltredIdx).getFullNote();
+    }
     else
         return "Brak aktualnego wspomnienia";
+}
+
+QString Notes::filtredpNote()
+{
+    int prevIdx = currentFiltredIdx;
+    prevIdx--;
+    if(prevIdx >= 0) {
+        return filtredNotes.at(prevIdx--).getFullNote();
+    }
+    else
+        return "<em> Brak poprzedniego wpisu </em>";
+}
+
+QString Notes::filtrednNote()
+{
+    int nextIdx = currentFiltredIdx;
+    nextIdx++;
+    if(nextIdx < filtredNotes.size()) {
+        return filtredNotes.at(nextIdx++).getFullNote();
+    }
+    else
+        return "<em> Brak nastepnego wpisu </em>";
 }
 
 void Notes::decrementIdx()
@@ -158,12 +181,56 @@ void Notes::addNeutralne()
             filtredNotes.push_back(listNotes.at(i));
         }
     }
-    currendFiltredIdx = filtredNotes.size() - 1;
+    currentFiltredIdx = filtredNotes.size() - 1;
+}
+
+void Notes::filterList(Feelings feeling)
+{
+    for(int i = 0; i < listNotes.size(); i++) {
+        if(listNotes.at(i).m_feeling == feeling) {
+            filtredNotes.push_back(listNotes.at(i));
+        }
+    }
+}
+
+bool Notes::isFilteredListEmpty()
+{
+    return filtredNotes.empty();
+}
+
+void Notes::clearFilteredList()
+{
+    filtredNotes.clear();
+}
+
+void Notes::decrementFilteredIdx()
+{
+    currentFiltredIdx--;
+    if(currentFiltredIdx <= 0) {
+        currentFiltredIdx = 0;
+        return;
+    }
+}
+
+void Notes::incrementFilteredIdx()
+{
+    currentFiltredIdx++;
+    if(currentFiltredIdx >= filtredNotes.size()) {
+        currentFiltredIdx = filtredNotes.size() - 1;
+        return;
+    }
 }
 
 
 
 void Notes::sortFunction() {
+    if(!filtredNotes.empty()) {
+        if(fromOldest)
+            std::sort(filtredNotes.begin(), filtredNotes.end());
+        else
+            std::sort(filtredNotes.begin(), filtredNotes.end(), std::greater<Notes>());
+        return;
+    }
     if(fromOldest)
         std::sort(listNotes.begin(), listNotes.end());
     else

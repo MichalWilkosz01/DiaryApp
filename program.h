@@ -25,6 +25,10 @@ public:
     void filtrNeutralne();
     void displayFiltered();
     void displayNotes();
+    void displayFilteredNotes(Feelings feeling);
+    bool checkIsFiltered();
+    void decrementFilteredIdx();
+    void incrementFilteredIdx();
 signals:
     void sendNotes(QString pNote, QString cNote, QString nNote);
     void setEnableUsun();
@@ -32,7 +36,7 @@ private:
     MainWindow *GUI = nullptr;
     AddingNotes* winNote;  
     void choseFile(QString path);
-
+    bool isFiltered;
 };
 
 #endif // PROGRAM_H

@@ -22,7 +22,7 @@ private:
     static int currentIdx;
     static bool isLastDeleted;
     static QList<Notes> filtredNotes;
-    static int currendFiltredIdx;
+    static int currentFiltredIdx;
     Feelings m_feeling = Feelings::Neutral;
 
 public:
@@ -53,6 +53,11 @@ public:
     static void readFile(QString path);
     static void createFile(QString path);
     static void addNeutralne();
+    static void filterList(Feelings feeling);
+    static bool isFilteredListEmpty();
+    static void clearFilteredList();
+    static void decrementFilteredIdx();
+    static void incrementFilteredIdx();
 };
 
 #endif // NOTES_H

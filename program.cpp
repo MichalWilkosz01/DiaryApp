@@ -54,10 +54,47 @@ void Program::deleteNote()
 void Program::displayNotes()
 {
     if(!Notes::isEmpty()) {
+        if(!Notes::isFilteredListEmpty())
+            Notes::clearFilteredList();
+        isFiltered = false;
         QString prevNote = Notes::pNote();
         QString currNote = Notes::cNote();
         QString nextNote = Notes::nNote();
         emit sendNotes(prevNote, currNote, nextNote);
+    }
+}
+
+void Program::displayFilteredNotes(Feelings feeling)
+{
+    if(!Notes::isEmpty()) {
+        isFiltered = true;
+        Notes::filterList(feeling);
+
+        QString prevNote = Notes::filtredpNote();
+        QString currNote = Notes::filtredcNote();
+        QString nextNote = Notes::filtrednNote();
+        emit sendNotes(prevNote, currNote, nextNote);
+    }
+}
+
+bool Program::checkIsFiltered()
+{
+    return isFiltered;
+}
+
+void Program::decrementFilteredIdx()
+{
+    if(!Notes::isFilteredListEmpty()) {
+        Notes::decrementFilteredIdx();
+        displayFiltered();
+    }
+}
+
+void Program::incrementFilteredIdx()
+{
+    if(!Notes::isFilteredListEmpty()) {
+        Notes::incrementFilteredIdx();
+        displayFiltered();
     }
 }
 
@@ -109,9 +146,9 @@ void Program::filtrNeutralne()
 
 void Program::displayFiltered()
 {
-    QString prevNote = Notes::pNote();
+    QString prevNote = Notes::filtredpNote();
     QString currNote = Notes::filtredcNote();
-    QString nextNote = Notes::nNote();
+    QString nextNote = Notes::filtrednNote();
     emit sendNotes(prevNote, currNote, nextNote);
 }
 
