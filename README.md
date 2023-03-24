@@ -14,7 +14,7 @@ Project is not finished. Things to fix/do are described in section below.
 
 ## TODO
 - [x] Main functionality
-- [ ] Fix bug with feelings
+- [x] Fix bug with filtering notes
 - [ ] Add tests
 - [ ] Add possibility to log in
 - [ ] Upgrade GUI
