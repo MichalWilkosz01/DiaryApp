@@ -32,7 +32,6 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_downButton_clicked()
 {
-    qInfo() << mainApp->checkIsFiltered();
     if(mainApp->checkIsFiltered())
         mainApp->incrementFilteredIdx();
     else
@@ -107,7 +106,7 @@ void MainWindow::on_pushSort_clicked()
 
 void MainWindow::on_loadBackUpButton_clicked()
 {
-    QString path = QFileDialog::getOpenFileName(this,"Otworz plik .txt","","Pliki tekstowe (*.txt)");
+    QString path = QFileDialog::getOpenFileName(this,"Otworz plik ze wspomnieniami","","Pliki tekstowe (*.txt)");
     mainApp->loadBackUp(path);
 }
 
@@ -134,6 +133,10 @@ void MainWindow::on_neutralFeelingBox_clicked(bool checked)
         ui->everyFeelingBox->setChecked(false);
         mainApp->displayFilteredNotes(Feelings::Neutral);
     }
+    if(!checked && !ui->sadFeelingBox->isChecked() && !ui->happyFeelingBox->isChecked()) {
+        on_everyFeelingBox_clicked();
+        ui->everyFeelingBox->setChecked(true);
+    }
 }
 
 
@@ -143,6 +146,10 @@ void MainWindow::on_happyFeelingBox_clicked(bool checked)
         ui->everyFeelingBox->setChecked(false);
         mainApp->displayFilteredNotes(Feelings::Happy);
     }
+    if(!checked && !ui->neutralFeelingBox->isChecked() && !ui->sadFeelingBox->isChecked()) {
+        on_everyFeelingBox_clicked();
+        ui->everyFeelingBox->setChecked(true);
+    }
 }
 
 
@@ -151,6 +158,10 @@ void MainWindow::on_sadFeelingBox_clicked(bool checked)
     if(checked) {
         ui->everyFeelingBox->setChecked(false);
         mainApp->displayFilteredNotes(Feelings::Sad);
+    }
+    if(!checked && !ui->neutralFeelingBox->isChecked() && !ui->happyFeelingBox->isChecked()) {
+        on_everyFeelingBox_clicked();
+        ui->everyFeelingBox->setChecked(true);
     }
 }
 

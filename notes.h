@@ -58,6 +58,8 @@ public:
     static void clearFilteredList();
     static void decrementFilteredIdx();
     static void incrementFilteredIdx();
+    static void sortFilteredNotes();
+    static bool isThisFeeling(Feelings feeling);
 };
 
 #endif // NOTES_H

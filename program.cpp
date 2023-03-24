@@ -67,13 +67,21 @@ void Program::displayNotes()
 void Program::displayFilteredNotes(Feelings feeling)
 {
     if(!Notes::isEmpty()) {
-        isFiltered = true;
-        Notes::filterList(feeling);
+        if(Notes::isThisFeeling(feeling)) {
+            isFiltered = true;
+            Notes::filterList(feeling);
+            Notes::sortFilteredNotes();
 
-        QString prevNote = Notes::filtredpNote();
-        QString currNote = Notes::filtredcNote();
-        QString nextNote = Notes::filtrednNote();
-        emit sendNotes(prevNote, currNote, nextNote);
+            QString prevNote = Notes::filtredpNote();
+            QString currNote = Notes::filtredcNote();
+            QString nextNote = Notes::filtrednNote();
+            emit sendNotes(prevNote, currNote, nextNote);
+        }
+        else {
+            if(Notes::isFilteredListEmpty()) {
+                emit sendNotes("", "Brak wspomnien", "");
+            }
+        }
     }
 }
 

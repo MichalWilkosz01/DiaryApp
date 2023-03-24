@@ -221,6 +221,20 @@ void Notes::incrementFilteredIdx()
     }
 }
 
+void Notes::sortFilteredNotes()
+{
+    sortFunction();
+}
+
+bool Notes::isThisFeeling(Feelings feeling)
+{
+    for(auto i : listNotes){
+        if(i.m_feeling == feeling)
+            return true;
+    }
+    return false;
+}
+
 
 
 void Notes::sortFunction() {
