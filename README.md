@@ -10,7 +10,7 @@ The user is able to choose the backup destination to load or save memories.
 App was written in three-layer architecture.
 
 ## Project status
-Project is not finished. Things to fix/do are described in section below.
+The project is practically finished. Features to do are described in section below.
 
 ## TODO
 - [x] Main functionality
